@@ -4,6 +4,7 @@ from domain import *
 from google.appengine.ext import blobstore
 from google.appengine.api import users
 from google.appengine.api import images
+import os
 
 class SignUp(webapp2.RequestHandler):
     def get(self):
@@ -30,7 +31,7 @@ class SignUp(webapp2.RequestHandler):
 
         upload_url = blobstore.create_upload_url('/_ah/upload')
 
-        user=User()
+        user = User()
         user.populate(email=user_curr.email(),city=city,name=name,role=role,signature=signature)
         if self.request.get('photo'):
             image= self.request.get('photo')
